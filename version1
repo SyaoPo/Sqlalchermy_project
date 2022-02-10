@@ -6,7 +6,7 @@ meta = MetaData() # информация о данных в базе данны�
 # создаем таблиц
 
 duty_forces = Table("Duty_forces", meta,
-            Column("Settings", ForeignKey("Forces_sea"),
+            Column("Settings", ForeignKey("Forces_sea")),
             Column("OSHS", primary_key=True),
             Column("Name", String(100), nullable=False),
             Column("Type", String(20), nullable=False),
