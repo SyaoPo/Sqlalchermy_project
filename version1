@@ -6,19 +6,19 @@ meta = MetaData() # информация о данных в базе данны�
 # создаем таблиц
 
 duty_forces = Table("Duty_forces", meta,
-            Column("Settings", ForeignKey("Forces_sea")),
-            Column("OSHS", primary_key=True),
-            Column("Name", String(100), nullable=False),
-            Column("Type", String(20), nullable=False),
-            Column("Project", String(10), nullable=False),
-            Column("Chief_enter", String(100), nullable=False),
-            Column('Admin_"SU"', String(50), nullable=False),
-            Column("Captain", String(50), nullable=False),
-            Column("Check_date", Date(), nullable=False),
-            Column("Location", String(50), nullable=False),
-            Column("Mission", String(150), nullable=False),
-            Column("Going_date", Date(), nullable=False),
-)
+                    Column("Settings", ForeignKey("Forces_sea")),
+                    Column("OSHS", primary_key=True),
+                    Column("Name", String(100), ForeignKey("Forces_sea.Name")),
+                    Column("Type", String(20), nullable=False),
+                    Column("Project", String(10), nullable=False),
+                    Column("Chief_enter", String(100), ForeignKey("Forces_sea.Chief_enter")),
+                    Column('Admin_"SU"', String(50), nullable=False),
+                    Column("Captain", String(50), nullable=False),
+                    Column("Check_date", Date(), nullable=False),
+                    Column("Location", String(50), nullable=False),
+                    Column("Mission", String(150), ForeignKey("Forces_sea.Mission")),
+                    Column("Going_date", Date(), ForeignKey("Forces_sea.Going_date"))
+                    )
 
 forces_sea = Table("Forces_sea", meta,
             Column("Settings"),
@@ -27,6 +27,6 @@ forces_sea = Table("Forces_sea", meta,
             Column("Chief_enter", String(100), nullable=False),
             Column("Mission", String(150), nullable=False),
             Column("Check_date", Date(), nullable=False),
-            Column("Going_date", Date(), nullable=False),
+            Column("Going_date", Date(), nullable=False)
                    )
 print(duty_forces.c)
